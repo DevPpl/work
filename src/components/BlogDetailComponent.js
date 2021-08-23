@@ -46,7 +46,7 @@ class CommentForm extends Component {
               <Row className="form-group">
                 <Label htmlFor="rating" md={12}>Rating</Label>
                 <Col md={12}>
-                  <Control.select model=".rating" defaultValue="1" className="form-control" name="rating">
+                  <Control.select model=".rating" defaultValue="1" className="form-control" name="rating" id="rating">
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -71,12 +71,12 @@ class CommentForm extends Component {
               <Row className="form-group">
                 <Label htmlFor="comment" md={12}>Comment</Label>
                 <Col md={12}>
-                  <Control.textarea model=".comment" id="message" rows="6" className="form-control" name="message" />
+                  <Control.textarea model=".comment" id="comment" rows="6" className="form-control" name="message" />
                 </Col>
               </Row>
               <Row className="form-group">
                 <Col>
-                  <Button type="submit" color="primary">
+                  <Button type="submit" color="bg-primary">
                     Submit
                   </Button>
                 </Col>
@@ -126,7 +126,7 @@ function RenderComments({comments, postComment, blogId}) {
 
     const renderedComments = comments.map((comment) => {
       return (
-        <Fade in>
+        <Fade in key={comment._id}>
         <li>
           <p>{comment.comment}</p>
           <p>-- {comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))} </p>
@@ -190,7 +190,7 @@ function RenderComments({comments, postComment, blogId}) {
           <div className="col-12 col-md-12 m-1">
             <RenderComments comments={props.comments}
             postComment={props.postComment}
-            blogId={props.blog.id} />
+            blogId={props.blog._id} />
           </div>
           </div>
         </div>
