@@ -7,11 +7,11 @@ import { baseUrl } from '../shared/baseUrl';
 function RenderMenuItem({ blog, onClick }) {
     return(
         <Card>
-            <Link to={`/menu/${blog._id}`} >
-                <CardImg width="100%" src={blog.image} alt={blog.name} />
-                    
+            <Link to={`/menu/${blog.id}`} >
+                <CardImg width="100%" src={baseUrl + blog.image} alt={blog.name} />
+                    {/* <CardImgOverlay> */}
                 <CardTitle className="align-center">{blog.name}</CardTitle>
-                    
+                    {/* //</CardImgOverlay> */}
             </Link>
         </Card>
     );
@@ -21,7 +21,7 @@ const Menu = (props) => {
 
     const menu = props.blogs.blogs.map((blog) => {
         return (
-            <div key={blog._id} className="col-12 col-md-5 m-1">
+            <div key={blog.id} className="col-12 col-md-5 m-1">
                <RenderMenuItem blog={blog} />
             </div>
         );
